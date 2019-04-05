@@ -93,20 +93,20 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 
 # Internationalization
@@ -151,3 +151,33 @@ REST_FRAMEWORK = {
 BOOKING_CODE_LENGTH = 6
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# ДЛЯ РЕГИСТРАЦИИ ЧЕРЕЗ EMAIL:
+# вариант с логированием писем в файлы, подходит для разработки
+# нужно сосздать папку mail-dev в cinema
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'mail-dev')
+# (можно зайти в send_mail через cmd+B и посмотреть, какие там параметры, например, html_message - для верстки писем)
+# from django.core.mail import send_mail
+
+
+# вариант с отправкой почты через smtp-сервер, что ближе к "боевым" условиям
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# данные берутся из личного кабинета mailtrap.io и копируются в cinema/settings_local.py
+# файл settings_local.py содержит настройки EMAIL_HOST, EMAIL_HOST_USERNAME, EMAIL_HOST_PASSWORD, EMAIL_PORT
+# и может содержать другие настройки проекта, особые для вашего локального(!) окружения проекта.
+from .settings_local import *
+
+
+EMAIL_DEFAULT_FROM = "admin@cinema.app"
+HOST_URL = "http://localhost:3000"
+
+# отправка тестового письма через консоль на mailtrap.io:
+# cd cinema
+# ./manage.py shell
+# from django.core.mail import send_mail
+# send_mail("Test mail", "Fuck you!", "admin@cinema.app", ['test@test.com', 'test2@test.com'])
+
+
+# срок действия токена регистрации
+TOKEN_EXPIRATION_HOURS = 72

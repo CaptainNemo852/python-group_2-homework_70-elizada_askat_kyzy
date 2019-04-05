@@ -10,6 +10,7 @@ import HallList from "./containers/HallList/HallList";
 import HallDetail from "./containers/HallDetail/HallDetail";
 import HallAdd from "./containers/HallAdd/HallAdd";
 import HallEdit from "./containers/HallEdit/HallEdit";
+import Layout from "./components/Layout/Layout";
 import Login from "./containers/Login/Login";
 import Logout from "./containers/Logout/Logout";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
@@ -30,6 +31,7 @@ class App extends Component {
         return (
             <div className="container">
                 <BrowserRouter>
+                    <Layout>
                         <Switch>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={Logout}/>
@@ -46,6 +48,7 @@ class App extends Component {
                             {/*/!* :id обозначает переменную id *!/*/}
                             <Route path="/" component={MovieList} exact/>
                         </Switch>
+                    </Layout>
                 </BrowserRouter>
             </div>
         );

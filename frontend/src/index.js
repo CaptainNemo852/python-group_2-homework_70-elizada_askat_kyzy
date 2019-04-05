@@ -1,13 +1,15 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css'
 
-// стили для дэйтпикера (без них он не выводится).
+// стили для дэйтпикера (без них он не выводится)
+// нужно установить react-datepicker через консоль, в папке frontend:
+// npm install --save react-datepicker
 import "react-datepicker/dist/react-datepicker.css";
+// там же нужно установить react-select:
+// npm install --save react-select
 
 import {createStore, applyMiddleware} from 'redux'
 import rootReducer from './store/reducers/root'
@@ -17,6 +19,7 @@ import thunkMiddleware from 'redux-thunk';
 // TODO: убрать, как только все запросы "переедут" в actions.js
 import axios from 'axios';
 import {BASE_URL} from "./api-urls";
+// задаем дефолтный baseURL, чтобы при axios-запросах его не прописывать
 axios.defaults.baseURL = BASE_URL;
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

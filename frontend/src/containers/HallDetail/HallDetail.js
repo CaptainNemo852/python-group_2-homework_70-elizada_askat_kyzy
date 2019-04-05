@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
+import './HallDetail.css';
 import {NavLink} from "react-router-dom";
-import Shows from "../../components/Shows/Shows";
 import {loadHallAndShows} from "../../store/actions/hall-detail";
 import {connect} from "react-redux";
 import {deleteHall, HALL_DELETE_SUCCESS} from "../../store/actions/hall-delete";
@@ -64,8 +64,6 @@ class HallDetail extends Component {
         // достаём данные из hall
         const {name, description, id} = this.props.hallDetail.hall;
         const {token, is_admin} = this.props.auth;
-        const shows = this.props.hallDetail.shows;
-        console.log(shows, 'shows');
 
         return <div>
             {/* название зала */}
@@ -78,11 +76,6 @@ class HallDetail extends Component {
             <div className='row Buttons'>
                 <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-3">Редактировать</NavLink>
                 <button type="button" className="btn btn-danger" onClick={() => this.hallDeleted(id)}>Удалить</button>
-            </div>
-            ] : null}
-
-            {shows ? [<div>
-                <Shows shows={shows}/>
             </div>
             ] : null}
 

@@ -1,4 +1,3 @@
-
 import React, {Component, Fragment} from 'react'
 import HallForm from "../../components/HallForm/HallForm";
 import {loadHall, HALL_EDIT_SUCCESS, saveHall} from "../../store/actions/hall-edit";

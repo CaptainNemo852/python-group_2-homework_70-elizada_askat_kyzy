@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import './MovieDetail.css';
 import {NavLink} from "react-router-dom";
 import MovieCategories from "../../components/MovieCategories/MovieCategories";
-import Shows from "../../components/Shows/Shows";
 import {loadMovieAndShows} from "../../store/actions/movie-detail";
 import {connect} from "react-redux";
 import {deleteMovie, MOVIE_DELETE_SUCCESS} from "../../store/actions/movie-delete";
@@ -61,9 +61,6 @@ class MovieDetail extends Component {
 
         const {token, is_admin} = this.props.auth;
         console.log(this.props.auth, 'AUTH!');
-        const shows = this.props.movieDetail.shows;
-        console.log(shows, 'shows');
-
         return <div>
 
             <div className='movie-detail-form row'>
@@ -98,12 +95,6 @@ class MovieDetail extends Component {
 
                 </div>
             </div>
-
-            {shows ? [<div>
-                <Shows shows={shows}/>
-            </div>
-            ] : null}
-
         </div>
     }
 }
@@ -126,3 +117,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 // здесь MovieDetail - название экспортируемого компонента
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail);
+
